@@ -2,25 +2,25 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
 }
 
 h1 {
-  font-family: "Fira Sans Condensed", "Poppins", "Quicksand", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 700;
   letter-spacing: 1px;
   color: #253858;
 }
 
 h2 {
-  font-family: "Poppins", "Fira Sans Condensed", "Quicksand", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 600;
   letter-spacing: 0.5px;
   color: #34495e;
 }
 
 h3 {
-  font-family: "Quicksand", "Poppins", "Fira Sans Condensed", sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   font-weight: 500;
   letter-spacing: 0.2px;
   color: #4f5d75;
@@ -31,10 +31,7 @@ h3 {
   background-color: grey;
 }
 
-.app {
-  min-height: 100vh;
-  background-color: rgb(33, 46, 78);
-}
+
 
 a {
   text-decoration: inherit;

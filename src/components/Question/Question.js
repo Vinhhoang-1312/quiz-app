@@ -1,8 +1,9 @@
 import { Button } from "@material-ui/core";
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import "./Question.css";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import he from "he";
 
 const Question = ({
   currQues,
@@ -13,11 +14,15 @@ const Question = ({
   setScore,
   score,
   setQuestions,
+  name,
 }) => {
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
-
   const history = useHistory();
+
+  useEffect(() => {
+    localStorage.setItem("score", score);
+  }, [score]);
 
   const handleSelect = (i) => {
     if (selected === i && selected === correct) return "select";
@@ -27,44 +32,49 @@ const Question = ({
 
   const handleCheck = (i) => {
     setSelected(i);
-    if (i === correct) setScore(score + 1);
+    if (i === correct) setScore((prev) => prev + 1);
     setError(false);
   };
 
   const handleNext = () => {
-    if (currQues > 8) {
+    if (!selected) {
+      setError("Please select an option first");
+      return;
+    }
+    if (currQues === questions.length - 1) {
+      localStorage.setItem("total", questions.length.toString());
+      localStorage.setItem("name", name);
       history.push("/result");
-    } else if (selected) {
+    } else {
       setCurrQues(currQues + 1);
-      setSelected();
-    } else setError("Please select an option first");
+      setSelected(undefined);
+    }
   };
 
   const handleQuit = () => {
-    setCurrQues(0);
-    setQuestions();
+    localStorage.clear();
+    history.push("/");
   };
 
   return (
     <div className="question">
-      <h2>Question {currQues + 1}/5 :</h2>
-      {/* <div className="quizInfo">
-        <span>{questions[currQues].category}</span>
-        <span>Score : {score}</span>
-      </div> */}
+      <h2>
+        Question {currQues + 1}
+        <span className="totalCount">/{questions.length}</span> :
+      </h2>
       <div className="singleQuestion">
-        <h2>{questions[currQues].question}</h2>
+        <h2>{he.decode(questions[currQues].question)}</h2>
         <div className="options">
           {error && <ErrorMessage>{error}</ErrorMessage>}
           {options &&
             options.map((i) => (
               <button
-                className={`singleOption  ${selected && handleSelect(i)}`}
+                className={`singleOption ${selected && handleSelect(i)}`}
                 key={i}
                 onClick={() => handleCheck(i)}
                 disabled={selected}
               >
-                {i}
+                {he.decode(i)}
               </button>
             ))}
         </div>
@@ -74,8 +84,8 @@ const Question = ({
             color="secondary"
             size="large"
             style={{ width: 185 }}
-            href="/"
-            onClick={() => handleQuit()}
+            onClick={handleQuit}
+            className="quit-button"
           >
             Quit
           </Button>
@@ -86,7 +96,7 @@ const Question = ({
             style={{ width: 185 }}
             onClick={handleNext}
           >
-            {currQues > 20 ? "Submit" : "Next Question"}
+            {currQues === questions.length - 1 ? "Submit" : "Next Question"}
           </Button>
         </div>
       </div>

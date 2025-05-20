@@ -5,7 +5,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Categories from "../../Data/api";
 import "./Home.css";
 
-const Home = ({ name, setName, fetchQuestions }) => {
+const Home = ({ name, setName, fetchQuestions, setScore }) => {
   const [error, setError] = useState(false);
 
   const history = useHistory();
@@ -16,6 +16,9 @@ const Home = ({ name, setName, fetchQuestions }) => {
       return;
     } else {
       setError(false);
+      setScore(0);
+      localStorage.setItem("score", "0");
+      localStorage.setItem("startTime", Date.now().toString());
       fetchQuestions();
       history.push("/quiz");
     }
@@ -31,12 +34,11 @@ const Home = ({ name, setName, fetchQuestions }) => {
           <div className="settings__select">
             {error && <ErrorMessage>Please Fill all the feilds</ErrorMessage>}
             <TextField
-              style={{ marginBottom: 25 }}
+              style={{ marginBottom: 25, backgroundColor: "white" }}
               label="Enter Your Name"
               variant="outlined"
               onChange={(e) => setName(e.target.value)}
             />
-
             <Button
               variant="contained"
               color="primary"

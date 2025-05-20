@@ -1,8 +1,9 @@
 .quiz {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
+  padding: 0 16px;
   font-family: "Poppins", sans-serif;
 }
 
@@ -11,21 +12,20 @@
   border-radius: 18px;
   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.12);
   padding: 32px;
-  margin: 40px 0 0 0;
+  margin: 0 auto;
   width: 100%;
-  max-width: 950px;
-  /* rộng hơn */
+  max-width: 600px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   border: 2px solid #e0e0e0;
   box-sizing: border-box;
 }
 
 .subtitle {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 600;
-  color: #4f5d75;
+  color: #263e69;
   background: #f1f5fa;
   border: none;
   box-shadow: 0 2px 12px rgba(79, 93, 117, 0.08);
@@ -59,6 +59,7 @@
     margin: 30px 0 10px 0;
     width: 100%;
     max-width: 100%;
+
     box-sizing: border-box;
   }
 
