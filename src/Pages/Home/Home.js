@@ -19,6 +19,7 @@ const Home = ({ name, setName, fetchQuestions, setScore }) => {
       setScore(0);
       localStorage.setItem("score", "0");
       localStorage.setItem("startTime", Date.now().toString());
+      localStorage.setItem("userAnswers", JSON.stringify([]));
       fetchQuestions();
       history.push("/quiz");
     }

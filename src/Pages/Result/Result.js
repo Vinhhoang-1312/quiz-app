@@ -48,15 +48,26 @@ const Result = () => {
             alt={isPass ? "happy" : "sad"}
           />
         </div>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="large"
-          onClick={handleQuit}
-          className="home-button"
-        >
-          Go to homepage
-        </Button>
+        <div className="result-actions">
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            onClick={handleQuit}
+            className="home-button"
+          >
+            Go to homepage
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            style={{ marginTop: 12 }}
+            onClick={() => history.push("/review")}
+          >
+            Review Answers
+          </Button>
+        </div>
       </div>
     </div>
   );

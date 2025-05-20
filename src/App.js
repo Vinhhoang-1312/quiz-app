@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./Pages/Home/Home";
 import Quiz from "./Pages/Quiz/Quiz";
 import Result from "./Pages/Result/Result";
+import Review from "./Pages/Review/Review";
 import "@fontsource/roboto"; // mặc định 400
 import "@fontsource/roboto/700.css"; // nếu bạn cần font-weight 700
 function App() {
@@ -39,6 +40,7 @@ function App() {
               setScore={setScore}
             />
           </Route>
+
           <Route path="/quiz">
             <Quiz
               name={name}
@@ -47,6 +49,9 @@ function App() {
               setScore={setScore}
               setQuestions={setQuestions}
             />
+          </Route>
+          <Route path="/review">
+            <Review />
           </Route>
           <Route path="/result">
             <Result name={name} score={score} />

@@ -7,6 +7,14 @@
   padding: 20px;
 }
 
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  /* khoảng cách giữa các nút */
+}
+
 .result-card {
   background: rgba(255, 255, 255);
   /* backdrop-filter: blur(10px);

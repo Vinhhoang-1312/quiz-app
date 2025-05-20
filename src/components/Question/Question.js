@@ -15,6 +15,8 @@ const Question = ({
   score,
   setQuestions,
   name,
+  userAnswers,
+  setUserAnswers,
 }) => {
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
@@ -34,6 +36,18 @@ const Question = ({
     setSelected(i);
     if (i === correct) setScore((prev) => prev + 1);
     setError(false);
+
+    // Lưu đáp án người dùng chọn
+    const updatedAnswers = [...(userAnswers || [])];
+    updatedAnswers[currQues] = {
+      question: questions[currQues].question,
+      correct: correct,
+      selected: i,
+      options: options,
+      answerText: questions[currQues].correct_answer,
+    };
+    setUserAnswers(updatedAnswers);
+    localStorage.setItem("userAnswers", JSON.stringify(updatedAnswers));
   };
 
   const handleNext = () => {

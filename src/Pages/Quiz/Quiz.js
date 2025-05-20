@@ -6,6 +6,7 @@ import "./Quiz.css";
 const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
   const [options, setOptions] = useState();
   const [currQues, setCurrQues] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   useEffect(() => {
     if (questions && questions[currQues]) {
@@ -21,7 +22,6 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
   const shuffleOptions = (options) => {
     return [...options].sort(() => Math.random() - 0.5);
   };
-
   return (
     <div className="quiz">
       <div className="quiz-box">
@@ -36,6 +36,8 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
             score={score}
             setScore={setScore}
             setQuestions={setQuestions}
+            userAnswers={userAnswers}
+            setUserAnswers={setUserAnswers}
           />
         ) : (
           <CircularProgress
@@ -49,5 +51,4 @@ const Quiz = ({ name, questions, score, setScore, setQuestions }) => {
     </div>
   );
 };
-
 export default Quiz;
